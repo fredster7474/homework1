@@ -6,50 +6,23 @@ def read_contacts
   return JSON.parse(contacts_json, { symbolize_names: true })
 end
 
-a = read_contacts
+#1
+array = read_contacts
 
-b = a.map{|x| x[:"name"]}
-puts b
-
-=begin
-b = a.map{|x| x[:"name" => :"phone"]}
-puts b
-=end
-#a.map{|x| x}.select{|name, phone, email| phone == "+44 20 7123 4567"}
-
-=begin
-my_hash = {"Joe" => "male", "Jim" => "male", "Patty" => "female"}
-my_hash.select{|name, gender| gender == "male"}.map {|x| puts x}
-
-   # ./tacta.rb
-def action_search(contacts)
-  puts
-  pattern = ask("Search for? ")
-  puts
-
-  contacts.each do |contact|
-    if contact[:name] =~ /\b#{pattern}/i
-      show(contact)
-      puts
-    end
-  end
+a =array.map do |hash|
+  { "name": hash[:"name"], "phone": hash[:"phone"] }
 end
-
-
-#a = read_contacts
-#a.select{|name, phone, email| name == "Thomas Jefferson" }
+puts a
 
 =begin
+return_keys = [ :"name", :"phone"]
 
-
-a = read_contacts
-a.select{|item| puts item if item == 1 }
-
-a.map {|item|"+ 1" == item}     #=> [true, false, false, false]
-a.select {|item|"+ 1" == item}
-
-contacts.each do |contact|
-    map.contact {|contact|} if contact =~ /\"+ 1"/i
-      puts contact
+return_array = array.map do |event|
+  Hash[
+    return_keys.collect do |key|
+      [ key, event[key] ]
     end
+  ]
+end
+puts return_array
 =end
