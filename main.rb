@@ -9,35 +9,31 @@ end
 array = read_contacts
 
 #1
-
-=begin
 a =array.map do |hash|
   { "name": hash[:"name"], "phone": hash[:"phone"] }
 end
 puts a
 
-=end
-
 #2a
-
 b = array.select {|x| x[:"phone"].include?("+1")}
 
 
 #2b
+c = array.select {|x| x[:"email"].include?(".org")}
 
-=begin
-
-b = array.select {|x| x[:"email"].include?(".org")}
-puts b
-
-=end
-
-c = b.reduce(0) do |sum, element|
+#3a
+d = b.reduce(0) do |sum, element|
     sum += (element.length)/3
    end
   puts c
-
+=end
   # a little cheap and dirty by dividing by 3 but it works... look forward to your version!
+
+#3b
+e = c.reduce(0) do |sum, element|
+    sum += (element.length)/3
+   end
+  puts e
 
 =begin
 {|k,v|
