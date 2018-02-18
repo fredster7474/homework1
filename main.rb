@@ -1,4 +1,5 @@
 # main.rb
+system "clear"
 require 'json'
 
 def read_contacts
@@ -8,52 +9,50 @@ end
 
 array = read_contacts
 
+
 #1
-a =array.map do |hash|
-  { "name": hash[:"name"], "phone": hash[:"phone"] }
+def contact_phone_and_name(contacts)
+  phone_and_name = contacts.map{ |contact| { contact[:name] => contact[:phone] } }
+  puts phone_and_name
 end
-puts a
 
 #2a
-b = array.select {|x| x[:"phone"].include?("+1")}
-
+def select_yank_numbers(contacts)
+   contacts.select {|x| x[:"phone"].include?("+1")}
+end
 
 #2b
-c = array.select {|x| x[:"email"].include?(".org")}
+def select_org_emails(contacts)
+ contacts.select {|x| x[:"email"].include?(".org")}
+end
+
+#3a and 3b
+def count(orgs)
+   orgs.reduce(0) do |sum, element|
+   sum = orgs.length
+  end
+end
+
+#1
+puts "1"
+puts contact_phone_and_name(array)
+
+#2a
+puts "2a"
+puts select_yank_numbers(array)
+
+#2b
+puts "2b"
+puts select_org_emails(array)
 
 #3a
-d = b.reduce(0) do |sum, element|
-    sum += (element.length)/3
-   end
-  puts c
-=end
-  # a little cheap and dirty by dividing by 3 but it works... look forward to your version!
+puts "3a"
+y = select_yank_numbers(array)
+z = count(y)
+puts z
 
 #3b
-e = c.reduce(0) do |sum, element|
-    sum += (element.length)/3
-   end
-  puts e
-
-=begin
-{|k,v|
-  select if v.include?("w")}
-puts b
-
-#b = array.select.each {|v| v.include?("a")}
-#print b
-
-#results = sharks.select {|item| item.include?("a")}
-
-=begin
-return_keys = [ :"name", :"phone"]
-
-return_array = array.map do |event|
-  Hash[
-    return_keys.collect do |key|
-      [ key, event[key] ]
-    end
-  ]
-end
-puts return_array
-=end
+puts "3b"
+y = select_org_emails(array)
+z = count(y)
+puts z
