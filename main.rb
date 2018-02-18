@@ -20,16 +20,24 @@ puts a
 
 #2a
 
+b = array.select {|x| x[:"phone"].include?("+1")}
+
+
+#2b
+
 =begin
 
-b = array.select {|x| x[:"phone"].include?("+1")}
+b = array.select {|x| x[:"email"].include?(".org")}
 puts b
 
 =end
 
-#2a
-b = array.select {|x| x[:"email"].include?(".org")}
-puts b
+c = b.reduce(0) do |sum, element|
+    sum += (element.length)/3
+   end
+  puts c
+
+  # a little cheap and dirty by dividing by 3 but it works... look forward to your version!
 
 =begin
 {|k,v|
